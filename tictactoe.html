@@ -1,44 +1,53 @@
-<h1> Tic Tac Toe </h1>
 
-<div id="player-selectors">
-  <label for="player1-piece">Player 1 Piece:</label>
-  <select id="player1-piece">
-    <option value="X">X</option>
-    <option value="O">O</option>
-    <option value="heart">❤️</option>
-    <option value="star">⭐</option>
-    <option value="flower">🏵️</option>
-    <option value="smiley">😃</option>
-  </select>
-
-  <label for="player2-piece">Player 2 Piece:</label>
-  <select id="player2-piece">
-    <option value="X">X</option>
-    <option value="O">O</option>
-    <option value="heart">❤️</option>
-    <option value="star">⭐</option>
-    <option value="flower">🏵️</option>
-    <option value="smiley">😃</option>
-  </select>
-</div>
-
-<div id="board">
-  <div class="cell">1</div>
-  <div class="cell">2</div>
-  <div class="cell">3</div>
-  <div class="cell">4</div>
-  <div class="cell">5</div>
-  <div class="cell">6</div>
-  <div class="cell">7</div>
-  <div class="cell">8</div>
-  <div class="cell">9</div>
-</div>
-
-<div id="controls">
-  <button id="restart-button">Restart Game</button>
-</div>
-
-<div id="scoreboard">
-  <p>Player 1 Wins: <span id="player1-score">0</span></p>
-  <p>Player 2 Wins: <span id="player2-score">0</span></p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic Tac Toe Game</title>
+  
+  <!-- Link to your CSS file -->
+  <link rel="stylesheet" href="tictactoe.css" />
+</head>
+<body>
+    <div id="game-container">
+        <div id="player-selectors">
+            <label for="player1-piece">Player 1 Piece:</label>
+            <select id="player1-piece">
+                <option value="X">X</option>
+                <option value="O">O</option>
+                <option value="heart">❤️</option>
+                <option value="star">⭐</option>
+                <option value="flower">🏵️</option>
+                <option value="smiley">😃</option>
+            </select>
+            <label for="player2-piece">Player 2 Piece:</label>
+            <select id="player2-piece">
+                <option value="X">X</option>
+                <option value="O">O</option>
+                <option value="heart">❤️</option>
+                <option value="star">⭐</option>
+                <option value="flower">🏵️</option>
+                <option value="smiley">😃</option>
+            </select>
+        </div>
+        <div id="board">
+            <div class="cell">1</div>
+            <div class="cell">2</div>
+            <div class="cell">3</div>
+            <div class="cell">4</div>
+            <div class="cell">5</div>
+            <div class="cell">6</div>
+            <div class="cell">7</div>
+            <div class="cell">8</div>
+            <div class="cell">9</div>
+        </div>
+        <div id="controls">
+            <button id="restart-button">Restart Game</button>
+        </div>
+        <div id="scoreboard">
+            <p>Player 1 Wins: <span id="player1-score">0</span></p>
+            <p>Player 2 Wins: <span id="player2-score">0</span></p>
+        </div>
+    </div>
+</body>
