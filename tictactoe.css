@@ -9,7 +9,7 @@ body{
     font-family: cursive;
 }
 #game-container {
-    background-color: #f0f0f0;
+    background-color: blueviolet;
     padding: 24px;
     border-radius: 16px;
     box-shadow: 0 4ps 20ps rgba(0, 0, 0, 0.1);
@@ -45,5 +45,24 @@ body{
     transform: scale(1.05);
 }
 .cell:active {
+    transform: scale(0.95);
+}
+#restart-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+}
+#restart-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+#restart-button:active {
     transform: scale(0.95);
 }
