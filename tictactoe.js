@@ -35,7 +35,7 @@ function clearScores() {
     score2 = 0;
     player1Score.innerText = score1;
     player2Score.innerText = score2;
-    showMessage("Scores have been cleared");
+    showMessage("Clean Slates!");
 }
 
 function resetGame() {
@@ -44,8 +44,13 @@ function resetGame() {
   gameActive = true;
   cells.forEach(cell => {
     cell.innerText = "";
+    cell.classList.remove('win');
   });
-  showMessage("Game has been reset");
+  const line = document.getElementById("win-line");
+  line.style.display = "none";
+  line.style.width = "";
+  line.style.transform = "";
+  showMessage("New Game, Starting Now...");
 }
 
 function handleCellClick(event) {
@@ -70,6 +75,10 @@ function handleCellClick(event) {
     const [x, y, z] = combo;
     if (board[x] && board[x] === board[y] && board[y] === board[z]) {
       won = true;
+      cells[x].classList.add('win');
+      cells[y].classList.add('win');
+      cells[z].classList.add('win');
+      winLine([x, y, z])
       break;
     }
   }
@@ -115,4 +124,31 @@ function showTurn(player) {
     turnBox.innerText = "";
     turnBox.style.display = "none";
    }, 2000);
+}
+
+function winLine([x, y, z]){
+  const line = document.getElementById("win-line");
+  const board = document.getElementById("board");
+  const boardRect = document.getElementById("board").getBoundingClientRect();
+  const cellRects = Array.from(cells).map(cell => cell.getBoundingClientRect());
+  
+  const startRect = cellRects[x];
+  const endRect = cellRects[z];
+
+  const x1 = (startRect.left + startRect.width / 2) - boardRect.left;
+  const y1 = (startRect.top + startRect.height / 2) - boardRect.top;
+  const x2 = (endRect.left + endRect.width / 2) - boardRect.left;
+  const y2 = (endRect.top + endRect.height / 2) - boardRect.top;
+
+  const deltaX = x2 - x1;
+  const deltaY = y2 - y1;
+  const length = Math.sqrt(deltaX**2 + deltaY**2) + 120;
+  const angle = Math.atan2(deltaY, deltaX) * (180/ Math.PI);
+
+  const newX = (60) * Math.cos(angle * Math.PI/180);
+  const newY = (60) * Math.sin(angle * Math.PI/180)
+
+  line.style.width = `${length}px`;
+  line.style.transform = `translate(${x1 - newX}px, ${y1 - newY}px) rotate(${angle}deg)`;
+  line.style.display = "block";
 }
