@@ -26,6 +26,11 @@ cells.forEach(cell => {
   cell.addEventListener("click", handleCellClick);
 });
 
+cells.forEach(cell=> {
+    cell.addEventListener("mouseenter", handleMouseEnter);
+    cell.addEventListener("mouseleave", handleMouseLeave);
+})
+
 restart.addEventListener("click", resetGame);
 
 clear.addEventListener("click", clearScores);
@@ -69,6 +74,8 @@ function handleCellClick(event) {
 
   board[index] = symbol;
   event.target.innerText = symbol;
+  event.target.classList.remove('preview');
+
 
   let won = false;
   for (let combo of winCombos) {
@@ -102,6 +109,23 @@ function handleCellClick(event) {
    if(gameActive){
     showTurn(`Player ${currentPlayer}'s turn`);
    }
+}
+
+function handleMouseEnter(event){
+  const index = event.target.dataset.index;
+  if(!board[index]&& gameActive && player1Select.value !== player2Select.value){
+    const sym = currentPlayer === 1 ? player1Select.value : player2Select.value;
+    event.target.innerText = sym;
+    event.target.classList.add('preview');
+  }
+}
+
+function handleMouseLeave(event){
+  const index = event.target.dataset.index;
+  if(!board[index]){
+    event.target.innerText = "";
+    event.target.classList.remove('preview');
+  }
 }
 
 function showMessage(text) {

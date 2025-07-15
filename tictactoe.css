@@ -58,6 +58,9 @@ body{
     background-color: #7b25576c;
     animation: pulse 1s infinite alternate;
 }
+.cell.preview {
+    opacity: 0.4;
+}
 #win-line{
     position: absolute;
     height: 8px;
