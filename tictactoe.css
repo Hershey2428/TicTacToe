@@ -145,16 +145,23 @@ body{
     border: 2px solid #7b2557;
     padding: 12px 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(251, 255, 0, 0.422);
     color:#7b2557;
     font-weight: bold;
     text-align: center;
     font-size: 1.3rem;
     width: fit-content;
     margin: 10px auto;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, color 0.3s ease;
+    animation: pulse 2s ease-in-out 4;
 }
-@keyframes pulse {
+.turn-symbol{
+    font-weight: bold;
+    margin-left: 6px;
+    font-size: 1.4rem;
+}
+@keyframes pulse{
     0% { transform: scale(1)}
-    100% { transform: scale(1.1)}
+    50% { transform: scale(1.1)}
+    100% { transform: scale(1)}
 }

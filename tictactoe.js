@@ -107,7 +107,7 @@ function handleCellClick(event) {
 
   currentPlayer = currentPlayer === 1 ? 2 : 1;
    if(gameActive){
-    showTurn(`Player ${currentPlayer}'s turn`);
+    showTurn();
    }
 }
 
@@ -139,15 +139,19 @@ function showMessage(text) {
    }, 2000);
 }
 
-function showTurn(player) {
+function showTurn() {
   const turnBox = document.getElementById("turn");
-  turnBox.innerText = player;
+
+  const player1Symbol = player1Select.value;
+  const player2Symbol = player2Select.value;
+  const symbol = currentPlayer === 1 ? player1Symbol : player2Symbol;
+
+  turnBox.innerHTML = `Player ${currentPlayer}'s Turn: <span class="turn-symbol">${symbol}</span>`;
   turnBox.style.display = "block";
 
   setTimeout(() => {
-    turnBox.innerText = "";
     turnBox.style.display = "none";
-   }, 2000);
+  }, 1000);
 }
 
 function winLine([x, y, z]){
@@ -155,7 +159,7 @@ function winLine([x, y, z]){
   const board = document.getElementById("board");
   const boardRect = document.getElementById("board").getBoundingClientRect();
   const cellRects = Array.from(cells).map(cell => cell.getBoundingClientRect());
-  
+ 
   const startRect = cellRects[x];
   const endRect = cellRects[z];
 
