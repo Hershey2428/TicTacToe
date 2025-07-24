@@ -5,11 +5,15 @@ body{
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background-color: rgb(251, 245, 250);
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     font-family: cursive;
+    color: white;
 }
 #game-container {
-    background-color: rgb(8, 89, 111);
+    background-color: rgba(255, 255, 255, 0);
     padding: 24px;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -25,7 +29,8 @@ body{
     justify-content: space-between;
     width: 30%;
     margin-bottom: 20px;
-    color: #e2f7fe;
+    color: #ffffff;
+    font-style: bold;
 }
 #board{
     display: grid;
@@ -36,7 +41,7 @@ body{
 }
 .cell{
     background-color: #ffffff;
-    border: 2px solid #7b2557;
+    border: 2px solid #257b32;
     font-size: 2.5rem;
     font-weight: bold;
     display: flex;
@@ -59,12 +64,12 @@ body{
     animation: pulse 1s infinite alternate;
 }
 .cell.preview {
-    opacity: 0.4;
+    animation: flash 2s ease-in-out 4;
 }
 #win-line{
     position: absolute;
     height: 8px;
-    background-color: rgb(8, 89, 111);
+    background-color: #257b32;
     z-index: 10;
     transition: all 0.5s ease;
     display: none;
@@ -72,11 +77,16 @@ body{
 
 }
 #restart {
-    background-color: #7b2557;
-    color: rgb(251, 245, 250);
+    background-image: url('restartBack.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: rgb(214, 238, 255);
     border: none;
     padding: 10px 20px;
     font-size: 1rem;
+    font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -84,18 +94,22 @@ body{
     margin-top: 10px;
 }
 #restart:hover {
-    background-color: #682d54;
-    transform: scale(1.05);
+    animation: fadeinout 2s ease-in-out 4;
 }
 #restart:active {
     transform: scale(0.95);
 }
 #clear {
-    background-color: #7b2557;
-    color: rgb(251, 245, 250);
+    background-image: url('clearBack.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: rgb(210, 255, 224);
     border: none;
     padding: 10px 20px;
     font-size: 1rem;
+    font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -103,7 +117,6 @@ body{
     margin-top: 10px;
 }
 #clear:hover {
-    background-color: #682d54;;
     transform: scale(1.05);
 }
 #clear:active {
@@ -124,12 +137,12 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
-    background-color: rgb(251, 245, 250);
-    border: 2px solid #7b2557;
+    background-color: #99c6a0;
+    border: 2px solid #257b32;
     padding: 40px 60px;
     border-radius: 16px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    color:#7b2557;
+    color:#257b32;
     font-weight: bold;
     font-size: 2rem;
     text-align: center;
@@ -160,8 +173,17 @@ body{
     margin-left: 6px;
     font-size: 1.4rem;
 }
+@keyframes flash{
+    0%{ opacity: 1}
+    50%{ opacity: 0}
+    100%{ opacity: 1}
+}
 @keyframes pulse{
     0% { transform: scale(1)}
-    50% { transform: scale(1.1)}
+    100% { transform: scale(1.2)}
+}
+@keyframes fadeinout{
+    0% { transform: scale(1)}
+    50% { transform: scale(1.2)}
     100% { transform: scale(1)}
 }

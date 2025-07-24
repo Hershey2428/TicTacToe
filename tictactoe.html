@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tic Tac Toe Game</title>
+
   
   <!-- Link to your CSS file -->
   <link rel="stylesheet" href="tictactoe.css" />
@@ -15,7 +16,7 @@
         <div id="message"></div>
         <div id="turn"></div>
         <div id="player-selectors">
-            <label for="player1-piece">Player 1 Piece:</label>
+            <label><span id="player1-label">Player 1</span> Piece:</label>
             <select id="player1-piece">
                 <option value="❌">❌</option>
                 <option value="⭕">⭕</option>
@@ -24,7 +25,7 @@
                 <option value="🏵️">🏵️</option>
                 <option value="😃">😃</option>
             </select>
-            <label for="player2-piece">Player 2 Piece:</label>
+            <label><span id="player2-label">Player 1</span> Piece:</label>
             <select id="player2-piece">
                 <option value="❌">❌</option>
                 <option value="⭕">⭕</option>
@@ -50,8 +51,9 @@
             <button id="restart">Restart Game</button>
         </div>
         <div id="scoreboard">
-            <p>Player 1 Wins: <span id="player1-score">0</span></p>
-            <p>Player 2 Wins: <span id="player2-score">0</span></p>
+            <p><span id="player1-name">Player 1</span>'s Wins: <span id="player1-score">0</span></p>
+            <p><span id="player2-name">Player 2</span>'s Wins: <span id="player2-score">0</span></p>
+
         </div>
         <div id="controls">
             <button id="clear">Clear Scores</button>

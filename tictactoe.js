@@ -21,6 +21,8 @@ let currentPlayer = 1;
 let score1 = 0;
 let score2 = 0;
 let gameActive = true;
+let player1 = "Player 1";
+let player2 = "Player 2";
 
 cells.forEach(cell => {
   cell.addEventListener("click", handleCellClick);
@@ -56,6 +58,28 @@ function resetGame() {
   line.style.width = "";
   line.style.transform = "";
   showMessage("New Game, Starting Now...");
+}
+
+document.addEventListener("DOMContentLoaded", () =>{
+  const name1 = prompt("Enter forst player's name:");
+  const name2 = prompt("Enter second player's name:");
+
+  if(name1 && name1.trim() !== ""){
+    player1 = name1.trim();
+  }
+
+  if(name2 && name2.trim() !== ""){
+    player2 = name2.trim();
+  }
+
+  updateNames();
+});
+
+function updateNames() {
+  document.getElementById("player1-name").textContent = player1;
+  document.getElementById("player2-name").textContent = player2;
+  document.getElementById("player1-label").innerText = `${player1}'s Piece`;
+  document.getElementById("player2-label").innerText = `${player2}'s Piece`;
 }
 
 function handleCellClick(event) {
