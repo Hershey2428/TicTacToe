@@ -1,37 +1,79 @@
-body{
+body{  
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100vh;
     margin: 0;
+    font-family: cursive;
+    color: black;
+    overflow-x: hidden;
+}
+h1 {
+    color: black;
+    background-color: rgba(255,255,255,0.5);
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+button, select {
+    background-color: rgba(255,255,255,0.6);
+    color: black;
+    border-radius: 6px;
+    font-weight: bold;
+    border: 2px solid black;
+    padding: 8px 8px;
+    cursor: pointer;
+}
+
+body.summer {
     background-image: url('background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    font-family: cursive;
-    color: white;
 }
+body.winter {
+    background-image: url('wbackground.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-weight: bold;
+    z-index: 100;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
 #game-container {
     background-color: rgba(255, 255, 255, 0);
     padding: 24px;
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-items: center;
-    min-width: 300px;
     min-width: 90%;
+    max-width: 600px; /* 🔹 added: prevents elements from going off-screen */
 }
+
+/* 🔹 player section squeezed a bit */
 #player-selectors{
     display: flex;
     justify-content: space-between;
-    width: 30%;
-    margin-bottom: 20px;
-    color: #ffffff;
-    font-style: bold;
+    align-items: center;
+    width: 45%; /* 🔹 changed: slightly narrower to fit screen */
+    color: black;
+    background: rgba(255,255,255,0.5);
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 4px 8px;
+    flex-wrap: wrap; /* 🔹 added: allows wrapping on smaller screens */
+    gap: 6px; /* 🔹 added: spacing when wrapped */
 }
+
 #board{
     display: grid;
     grid-template-columns: repeat(3, 100px);
@@ -39,9 +81,10 @@ body{
     gap: 10px;
     margin: 20px 0;
 }
+
 .cell{
     background-color: #ffffff;
-    border: 2px solid #257b32;
+    border: 2px solid black;
     font-size: 2.5rem;
     font-weight: bold;
     display: flex;
@@ -60,119 +103,152 @@ body{
     transform: scale(0.95);
 }
 .cell.win{
-    background-color: #7b25576c;
+    background-color: rgba(0,0,0,0.2);
     animation: pulse 1s infinite alternate;
 }
 .cell.preview {
     animation: flash 2s ease-in-out 4;
 }
+
 #win-line{
     position: absolute;
     height: 8px;
-    background-color: #257b32;
+    background-color: black;
     z-index: 10;
     transition: all 0.5s ease;
     display: none;
     transform-origin: 0 0;
-
 }
+
 #restart {
-    background-image: url('restartBack.jpg');
+    background-image: url('restartBack.jpg'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    color: rgb(214, 238, 255);
-    border: none;
+    color: black;
+    border: 2px solid black;
     padding: 10px 20px;
     font-size: 1rem;
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, transform 0.2s;
-    margin-top: 10px;
+    transition: transform 0.2s;
 }
 #restart:hover {
-    animation: fadeinout 2s ease-in-out 4;
+    transform: scale(1.1);
 }
 #restart:active {
     transform: scale(0.95);
 }
+
 #clear {
-    background-image: url('clearBack.jpg');
+    background-image: url('clearBack.jpg'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    color: rgb(210, 255, 224);
-    border: none;
+    color: black;
+    border: 2px solid black;
     padding: 10px 20px;
     font-size: 1rem;
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, transform 0.2s;
-    margin-top: 10px;
+    transition: transform 0.2s;
+    margin-top: 5px;
 }
 #clear:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 #clear:active {
     transform: scale(0.95);
 }
+
+/* 🔹 scoreboard squeezed slightly */
 #scoreboard{
     display: flex;
     justify-content: space-between;
-    width: 30%;
+    width: 24%; /* 🔹 changed: slightly narrower */
     text-align: center;
-    margin-top: 10px;
-    font-size: 1.2rem;
-    color: #e2f7fe;
+    margin-top: 5px;
+    font-size: 1rem;
+    color: black;
+    background: rgba(255,255,255,0.5);
+    border-radius: 8px;
+    padding: 6px, 6px;
 }
+
 #message {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
-    background-color: #99c6a0;
-    border: 2px solid #257b32;
+    background-color: rgba(255,255,255,0.8);
+    border: 2px solid black;
     padding: 40px 60px;
     border-radius: 16px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    color:#257b32;
+    color: black;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 2.0rem;
     text-align: center;
     z-index: 1000;
-    transition: opacity 0.5s ease;
-    opacity: 1;
 }
+
+#instructions-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(255,255,255,0.7);
+    color: black;
+    border: 2px solid black;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 1000;
+    line-height: 1;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+#instructions-btn:hover {
+    background-color: rgba(255,255,255,0.9);
+}
+
 #turn{
     display: none;
-    position: relative;
-    bottom: 0;
-    background-color:rgb(251, 245, 250);
-    border: 2px solid #7b2557;
-    padding: 12px 20px;
+    background-color: rgba(255,255,255,0.7);
+    border: 2px solid black;
+    padding: 10px 16px;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(251, 255, 0, 0.422);
-    color:#7b2557;
+    color:black; 
     font-weight: bold;
-    text-align: center;
     font-size: 1.3rem;
-    width: fit-content;
     margin: 10px auto;
-    transition: opacity 0.3s ease, color 0.3s ease;
-    animation: pulse 2s ease-in-out 4;
 }
-.turn-symbol{
-    font-weight: bold;
-    margin-left: 6px;
-    font-size: 1.4rem;
+
+.edit-name {
+    background-color: rgba(255,255,255,0.6);
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-left: 4px;
+    cursor: pointer;
 }
+.name-input {
+    font-size: 1rem;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 2px 6px;
+    background-color: rgba(255,255,255,0.8);
+    color: black;
+    width: 100px;
+}
+
 @keyframes flash{
     0%{ opacity: 1}
     50%{ opacity: 0}

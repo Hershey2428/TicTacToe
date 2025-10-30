@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic Tac Toe Game</title>
+  <link rel="stylesheet" href="tictactoe.css" />
+</head>
+<body class="summer">
+
+  <button id="theme-toggle">Switch Theme</button>
+
+<h1>
+  Tic Tac Toe
+  <button id="instructions-btn" title="Instructions">?</button>
+</h1>
+
+  <div id="game-container">
+      <div id="message"></div>
+      <div id="turn"></div>
+
+      <div id="player-selectors">
+
+          <label>
+              <span id="player1-label">Player 1</span>
+              <button class="edit-name" data-player="1">✏️</button>
+              Piece:
+          </label>
+          <select id="player1-piece">
+              <option value="❌">❌</option>
+              <option value="⭕">⭕</option>
+              <option value="❤️">❤️</option>
+              <option value="⭐">⭐</option>
+              <option value="🏵️">🏵️</option>
+              <option value="😃">😃</option>
+          </select>
+
+          <label>
+              <span id="player2-label">Player 2</span>
+              <button class="edit-name" data-player="2">✏️</button>
+              Piece:
+          </label>
+          <select id="player2-piece">
+              <option value="❌">❌</option>
+              <option value="⭕">⭕</option>
+              <option value="❤️">❤️</option>
+              <option value="⭐">⭐</option>
+              <option value="🏵️">🏵️</option>
+              <option value="😃">😃</option>
+          </select>
+      </div>
+
+      <div id="board">
+          <div id="win-line"></div>
+          <div class="cell" data-index="0"></div>
+          <div class="cell" data-index="1"></div>
+          <div class="cell" data-index="2"></div>
+          <div class="cell" data-index="3"></div>
+          <div class="cell" data-index="4"></div>
+          <div class="cell" data-index="5"></div>
+          <div class="cell" data-index="6"></div>
+          <div class="cell" data-index="7"></div>
+          <div class="cell" data-index="8"></div>
+      </div>
+
+      <div id="controls">
+          <button id="restart">Restart Game</button>
+      </div>
+
+      <div id="scoreboard">
+          <p><span id="player1-name">Player 1</span>'s Wins: <span id="player1-score">0</span></p>
+          <p><span id="player2-name">Player 2</span>'s Wins: <span id="player2-score">0</span></p>
+      </div>
+
+      <div id="controls">
+          <button id="clear">Clear Scores</button>
+      </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="tictactoe.js"></script>
+</body>
+</html>

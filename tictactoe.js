@@ -16,6 +16,51 @@ const winCombos = [
   [2, 4, 6],
 ];
 
+const instructionsBtn = document.getElementById('instructions-btn');
+
+instructionsBtn.addEventListener('click', () => {
+    alert(
+        "Tic Tac Toe Instructions:\n\n" +
+        "1. Use the dropdowns to pick a player piece.\n" +
+        "2. Rename yourself by clicking the edit button (pencil).\n" +
+        "3. Take turns clicking a cell to place your piece.\n" +
+        "4. To win align 3 pieces in a row, diagonally, horizontally or vertically.\n" +
+        "5. Click 'Restart Game' to play again.\n" +
+        "6. Click 'Clear Scores' to reset wins."
+    );
+});
+
+const editButtons = document.querySelectorAll('.edit-name');
+
+editButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const playerNum = button.getAttribute('data-player');
+        const labelSpan = document.getElementById(`player${playerNum}-label`);
+        const nameSpan = document.getElementById(`player${playerNum}-name`);
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = labelSpan.textContent;
+        input.classList.add('name-input');
+
+        labelSpan.replaceWith(input);
+        input.focus();
+
+        const finishEdit = () => {
+            const newName = input.value.trim() || `Player ${playerNum}`;
+            labelSpan.textContent = newName;
+            nameSpan.textContent = newName;
+            input.replaceWith(labelSpan);
+            updateNames();
+        };
+
+        input.addEventListener('blur', finishEdit);
+        input.addEventListener('keydown', e => {
+            if (e.key === 'Enter') finishEdit();
+        });
+    });
+});
+
 let board = Array(9).fill(null);
 let currentPlayer = 1;
 let score1 = 0;
@@ -36,6 +81,17 @@ cells.forEach(cell=> {
 restart.addEventListener("click", resetGame);
 
 clear.addEventListener("click", clearScores);
+
+const themeToggle = document.getElementById('theme-toggle');
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('summer');
+    document.body.classList.toggle('winter');
+
+    const isWinter = document.body.classList.contains('winter');
+    restart.style.backgroundImage = isWinter ? "url('wrestartBack.png')" : "url('restartBack.png')";
+    clear.style.backgroundImage = isWinter ? "url('wclearBack.png')" : "url('clearBack.png')";
+});
 
 function clearScores() {
     score1 = 0;
@@ -60,26 +116,13 @@ function resetGame() {
   showMessage("New Game, Starting Now...");
 }
 
-document.addEventListener("DOMContentLoaded", () =>{
-  const name1 = prompt("Enter forst player's name:");
-  const name2 = prompt("Enter second player's name:");
-
-  if(name1 && name1.trim() !== ""){
-    player1 = name1.trim();
-  }
-
-  if(name2 && name2.trim() !== ""){
-    player2 = name2.trim();
-  }
-
-  updateNames();
-});
-
 function updateNames() {
+  player1 = document.getElementById("player1-label").textContent;
+  player2 = document.getElementById("player2-label").textContent;
   document.getElementById("player1-name").textContent = player1;
   document.getElementById("player2-name").textContent = player2;
-  document.getElementById("player1-label").innerText = `${player1}'s Piece`;
-  document.getElementById("player2-label").innerText = `${player2}'s Piece`;
+  document.getElementById("player1-label").innerText = player1;
+  document.getElementById("player2-label").innerText = player2;
 }
 
 function handleCellClick(event) {
@@ -99,7 +142,6 @@ function handleCellClick(event) {
   board[index] = symbol;
   event.target.innerText = symbol;
   event.target.classList.remove('preview');
-
 
   let won = false;
   for (let combo of winCombos) {
@@ -123,7 +165,9 @@ function handleCellClick(event) {
       score2++;
       player2Score.innerText = score2;
     }
-    showMessage(`Player ${currentPlayer} wins!`);
+    showMessage(`${currentPlayer === 1 ? player1 : player2} wins!`);
+ 
+    launchConfetti(); 
   } else if(!board.includes(null)) {
     gameActive = false;
     showMessage("It's a draw!");
@@ -170,7 +214,7 @@ function showTurn() {
   const player2Symbol = player2Select.value;
   const symbol = currentPlayer === 1 ? player1Symbol : player2Symbol;
 
-  turnBox.innerHTML = `Player ${currentPlayer}'s Turn: <span class="turn-symbol">${symbol}</span>`;
+  turnBox.innerHTML = `${currentPlayer === 1 ? player1 : player2}'s Turn: <span class="turn-symbol">${symbol}</span>`;
   turnBox.style.display = "block";
 
   setTimeout(() => {
@@ -203,4 +247,21 @@ function winLine([x, y, z]){
   line.style.width = `${length}px`;
   line.style.transform = `translate(${x1 - newX}px, ${y1 - newY}px) rotate(${angle}deg)`;
   line.style.display = "block";
+}
+
+function launchConfetti() {
+    const duration = 3 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+    const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+            return clearInterval(interval);
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 } }));
+    }, 250);
 }
