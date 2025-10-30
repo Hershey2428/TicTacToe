@@ -2,3 +2,5 @@
 This was the first project I ever started, so I decided to go with something simple but fun. I made a **two-player Tic Tac Toe game using HTML, CSS, and JavaScript** in VS Code. You can pick your own game pieces, change names anytime, restart or clear scores, and even keep track of wins like a mini tournament. There’s confetti when you win, a theme switch between summer and winter, and a little “?” button for instructions.
 
 I made this project because I wanted to learn how to make something interactive from scratch and actually see my code come to life. I struggled a bit with connecting my JavaScript to the HTML and getting the win logic right, but I learned a lot about debugging, DOM manipulation, and how small details can make a significant difference in the overall feel of a project.
+
+[![Athena Award Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Faward.athena.hackclub.com%2Fapi%2Fbadge)](https://award.athena.hackclub.com?utm_source=readme)
